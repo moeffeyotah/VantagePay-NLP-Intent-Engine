@@ -41,30 +41,39 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    .main { background-color: #f8f9fa; }
+    .main { background-color: #f4f4f4; }
+    
+    /* Primary Action Button */
     .stButton>button { 
         background-color: #E02035; 
         color: white; 
-        border-radius: 8px; 
+        border-radius: 4px; 
+        font-weight: 700;
         border: none;
-        padding: 0.6rem;
-        font-weight: 600;
     }
-    /* The Intent */
+
+    /* The High-Contrast Intent Card */
     div[data-testid="stMetric"] {
         background-color: #ffffff;
-        border: 1px solid #f0f2f6;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        text-align: center;
+        border-left: 8px solid #E02035; /* Fanshawe Red Accent */
+        padding: 25px;
+        border-radius: 4px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
-    /* Styling the Metric Label specifically */
+
+    /* Forcing Deep Black/Charcoal for the Result Text */
+    div[data-testid="stMetricValue"] > div {
+        color: #1A1A1A !important;
+        font-weight: 800 !important;
+        font-size: 2.2rem !important;
+    }
+
+    /* Forcing Dark Grey for the Label */
     div[data-testid="stMetricLabel"] > div {
-        font-size: 1rem !important;
-        font-weight: 700 !important;
-        color: #666666 !important;
+        color: #444444 !important;
+        font-size: 0.9rem !important;
         text-transform: uppercase;
+        letter-spacing: 1px;
     }
     </style>
     """,
@@ -125,17 +134,17 @@ if st.button("Analyze & Route", type="primary", use_container_width=True):
             final_intent = encoder.inverse_transform(prediction_encoded)[0]
 
         # Results visualization
-        st.success("Triage Executed Successfully")
+        st.success("Analysis Complete")
 
         # The Metric Box (Now styled with the new CSS)
         st.metric(
-            label="Classified Business Intent",
+            label="Verified Business Intent",
             value=final_intent.replace("_", " ").upper(),
         )
 
         # Routing Info
         dept = final_intent.split("_")[-1].upper() if "_" in final_intent else "GENERAL SUPPORT"
-        st.info(f"**Operational Routing:** Assigned to the **{dept}** department.")
+        st.info(f"**Operational Logic:** Routing to **{dept}** division.")
 
 # --- 4. AUTHORSHIP ---
 st.divider()
