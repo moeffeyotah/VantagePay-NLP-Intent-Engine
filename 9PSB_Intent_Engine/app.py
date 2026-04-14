@@ -50,7 +50,7 @@ st.markdown(
         padding: 0.6rem;
         font-weight: 600;
     }
-    /* The Intent Card */
+    /* The Intent */
     div[data-testid="stMetric"] {
         background-color: #ffffff;
         border: 1px solid #f0f2f6;
