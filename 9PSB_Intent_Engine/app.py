@@ -70,7 +70,7 @@ st.markdown(
 
     /* Forcing Dark Grey for the Label */
     div[data-testid="stMetricLabel"] > div {
-        color: #444444 !important;
+        color: #1A1A1A !important;
         font-size: 0.9rem !important;
         text-transform: uppercase;
         letter-spacing: 1px;
